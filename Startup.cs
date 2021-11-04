@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql;
 using TokoMotor.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore.Proxies;
 
 namespace TokoMotor
 {
@@ -29,23 +30,18 @@ namespace TokoMotor
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddDbContext<TokoMotorDbContext>(options => {
-                options.UseNpgsql(Configuration.GetConnectionString("Dev"));
-                options.UseLazyLoadingProxies();
-            });
-            services
-                .AddDefaultIdentity<User>()
-                .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<TokoMotorDbContext>()
-                .AddDefaultTokenProviders();
-            services.AddRazorPages();
-
             services.AddDbContext<TokoMotorDbContext>(options =>
             {
                 var connectionString = Configuration.GetConnectionString("TokoMotor");
                 var serverVersion = new MariaDbServerVersion(new Version(10, 6, 4));
                 options.UseMySql(connectionString, serverVersion);
+                options.UseLazyLoadingProxies();
             });
+            services
+                .AddDefaultIdentity<User>()
+                .AddEntityFrameworkStores<TokoMotorDbContext>()
+                .AddDefaultTokenProviders();
+            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
