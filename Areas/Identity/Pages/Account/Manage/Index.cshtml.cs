@@ -26,6 +26,8 @@ namespace TokoMotor.Areas.Identity.Pages.Account.Manage
         }
 
         public string Username { get; set; }
+        
+        public string Avatar { get; set; }
 
         [TempData]
         public string StatusMessage { get; set; }
@@ -53,6 +55,7 @@ namespace TokoMotor.Areas.Identity.Pages.Account.Manage
             {
                 PhoneNumber = phoneNumber
             };
+            Avatar = Path.Combine("/Profile/Avatar", user.Avatar ?? "");
         }
 
         public async Task<IActionResult> OnGetAsync()
@@ -91,16 +94,19 @@ namespace TokoMotor.Areas.Identity.Pages.Account.Manage
                     return RedirectToPage();
                 }
             }
+
             var avatarDirectory = Path.Combine(Directory.GetCurrentDirectory(), "Avatars");
             Directory.CreateDirectory(avatarDirectory);
 
             var extension = Path.GetExtension(Input.AvatarFile?.FileName)?.ToLowerInvariant();
             var permittedType = new string[] { ".png", ".jpg" };
+
             if (string.IsNullOrEmpty(extension) || !permittedType.Contains(extension))
             {
                 StatusMessage = "Unsupported file type";
                 return RedirectToPage();
             }
+
             var fileName = $"{user.Id}{extension}";
             var avatarFile = Path.Combine(avatarDirectory, fileName);
             using var stream = new FileStream(avatarFile, FileMode.Create);
