@@ -10,9 +10,9 @@ namespace TokoMotor.Models
         public int Id { get; set; }
         public string Nama { get; set; }
         public string Merek { get; set; }
-        public decimal Harga { get; set; }
         
-        public int TransaksiId { get; set; }
-        public virtual Transaksi Transaksi { get; set; }
+        [DataType(DataType.Currency)]
+        [Column(TypeName = "decimal(18, 2)")]
+        public decimal Harga { get; set; }
     }
 }

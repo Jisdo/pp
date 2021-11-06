@@ -9,8 +9,8 @@ using TokoMotor.Data;
 namespace TokoMotor.Migrations
 {
     [DbContext(typeof(TokoMotorDbContext))]
-    [Migration("20211103141018_AddIdentitySchema")]
-    partial class AddIdentitySchema
+    [Migration("20211105145436_New")]
+    partial class New
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -94,10 +94,12 @@ namespace TokoMotor.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("varchar(255)");
+                        .HasMaxLength(128)
+                        .HasColumnType("varchar(128)");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("varchar(255)");
+                        .HasMaxLength(128)
+                        .HasColumnType("varchar(128)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("longtext");
@@ -134,10 +136,12 @@ namespace TokoMotor.Migrations
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("varchar(255)");
+                        .HasMaxLength(128)
+                        .HasColumnType("varchar(128)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("varchar(255)");
+                        .HasMaxLength(128)
+                        .HasColumnType("varchar(128)");
 
                     b.Property<string>("Value")
                         .HasColumnType("longtext");
@@ -154,7 +158,7 @@ namespace TokoMotor.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("Harga")
-                        .HasColumnType("decimal(65,30)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Merek")
                         .HasColumnType("longtext");
@@ -162,41 +166,9 @@ namespace TokoMotor.Migrations
                     b.Property<string>("Nama")
                         .HasColumnType("longtext");
 
-                    b.Property<int>("TransaksiId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("varchar(255)");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("TransaksiId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Motors");
-                });
-
-            modelBuilder.Entity("TokoMotor.Models.Transaksi", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("Jumlah")
-                        .HasColumnType("decimal(65,30)");
-
-                    b.Property<string>("Nama")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("varchar(255)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Transaksi");
                 });
 
             modelBuilder.Entity("TokoMotor.Models.User", b =>
@@ -318,40 +290,6 @@ namespace TokoMotor.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("TokoMotor.Models.Motor", b =>
-                {
-                    b.HasOne("TokoMotor.Models.Transaksi", "Transaksi")
-                        .WithMany("Motors")
-                        .HasForeignKey("TransaksiId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("TokoMotor.Models.User", null)
-                        .WithMany("Motors")
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("Transaksi");
-                });
-
-            modelBuilder.Entity("TokoMotor.Models.Transaksi", b =>
-                {
-                    b.HasOne("TokoMotor.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("TokoMotor.Models.Transaksi", b =>
-                {
-                    b.Navigation("Motors");
-                });
-
-            modelBuilder.Entity("TokoMotor.Models.User", b =>
-                {
-                    b.Navigation("Motors");
                 });
 #pragma warning restore 612, 618
         }

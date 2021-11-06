@@ -10,7 +10,5 @@ namespace TokoMotor.Models
     {
         public string Nama { get; set; }
         public string Avatar { get; set; }
-
-        public virtual List<Motor> Motors { get; set; }
     }
 }

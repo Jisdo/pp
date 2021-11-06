@@ -13,6 +13,5 @@ namespace TokoMotor.Data
         { }
 
         public DbSet<Motor> Motors { get; set; }
-        public DbSet<Transaksi> Transaksi { get; set; }
     }
 }
