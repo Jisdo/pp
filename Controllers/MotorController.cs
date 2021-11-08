@@ -25,5 +25,11 @@ namespace TokoMotor.Controllers
         {
             return View(_context.Motors.ToList());
         }
+
+        public IActionResult Beli(int id)
+        {
+            var beli = _context.Motors.Find(id);
+            return View(beli);
+        }
     }
 }

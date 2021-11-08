@@ -1,0 +1,16 @@
+@model Motor
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h1>@Html.DisplayFor(modelItem => Model.Nama)</h1>
+<table class="table">
+    <tr>
+        <td>Merek</td>
+        <td>@Html.DisplayFor(modelItem => Model.Merek)</td>
+    </tr>
+    <tr>
+        <td>Harga</td>
+        <td>@Html.DisplayFor(modelItem => Model.Harga)</td>
+    </tr>
+</table>
