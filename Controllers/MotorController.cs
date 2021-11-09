@@ -26,9 +26,18 @@ namespace TokoMotor.Controllers
             return View(_context.Motors.ToList());
         }
 
-        public IActionResult Beli(int id)
+        public async Task<IActionResult> Beli(int? id)
         {
-            var beli = _context.Motors.Find(id);
+            if (id == null)
+            {
+                return NotFound();
+            }  
+            var beli =  await _context.Motors
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (beli == null)
+            {
+                return NotFound();
+            }
             return View(beli);
         }
     }

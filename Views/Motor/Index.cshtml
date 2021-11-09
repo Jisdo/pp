@@ -5,6 +5,12 @@
 <div>
     <h1 class="display-4">Daftar Motor : </h1>
     
+    <style>
+    body {
+        background-image: url('https://fashionsista.co/wallpaper/wallpaper/20220508/15-background-warna-biru-tua-wallpaper-polos-gambar-kitan-preview.jpg');
+        background-size: cover;
+    }
+</style>
     <table class="table">
         <thead>
             <tr>
@@ -21,7 +27,7 @@
                     <td>@item.Merek</td>
                     <td>@item.Harga</td>
                     <td>
-                        <a asp-controller="Motor" asp-action="Beli">Beli</a>
+                        <a asp-controller="Motor" asp-action="Beli" asp-route-id="@item.Id">Beli</a>
                     </td>
                 </tr>
             }

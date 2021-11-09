@@ -3,6 +3,13 @@
     ViewData["Title"] = "Home Page";
 }
 
+<style>
+    body {
+        background-image: url('https://fashionsista.co/wallpaper/wallpaper/20220508/15-background-warna-biru-tua-wallpaper-polos-gambar-kitan-preview.jpg');
+        background-size: cover;
+    }
+</style>
+
 <h1>@Html.DisplayFor(modelItem => Model.Nama)</h1>
 <table class="table">
     <tr>
@@ -14,3 +21,8 @@
         <td>@Html.DisplayFor(modelItem => Model.Harga)</td>
     </tr>
 </table>
+
+<form asp-controller="Movie" asp-route-id="@Model.Id">
+    <button class="btn btn-danger" asp-controller="Motor" asp-action="Index">Beli</button>
+    <a class="btn btn-primary" asp-controller="Motor" asp-action="Index">Kembali</a>
+</form>
