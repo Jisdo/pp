@@ -40,5 +40,11 @@ namespace TokoMotor.Controllers
             }
             return View(beli);
         }
+
+        public IActionResult Show(int id)
+        {
+            var movie = _context.Motors.Find(id);
+            return View(movie);
+        }
     }
 }

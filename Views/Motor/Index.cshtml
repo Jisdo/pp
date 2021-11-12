@@ -7,7 +7,7 @@
     
     <style>
     body {
-        background-image: url('https://fashionsista.co/wallpaper/wallpaper/20220508/15-background-warna-biru-tua-wallpaper-polos-gambar-kitan-preview.jpg');
+        background-image: url('https://mocah.org/uploads/posts/342284-KDA-Akali-LoL-League-of-Legends-Video-Game-The-Baddest.jpg');
         background-size: cover;
     }
 </style>
@@ -17,6 +17,7 @@
                 <th>Nama</th>
                 <th>Merek</th>
                 <th>Harga</th>
+                <th>Aksi</th>
             </tr>
         </thead>
         <tbody>
@@ -27,7 +28,8 @@
                     <td>@item.Merek</td>
                     <td>@item.Harga</td>
                     <td>
-                        <a asp-controller="Motor" asp-action="Beli" asp-route-id="@item.Id">Beli</a>
+                        <a asp-controller="Motor" asp-action="Beli" asp-route-id="@item.Id">Beli</a> |
+                        <a asp-controller="Motor" asp-action="Show" asp-route-id="@item.Id">Detail</a>
                     </td>
                 </tr>
             }
