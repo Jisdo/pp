@@ -23,6 +23,13 @@
 </table>
 
 <form asp-controller="Movie" asp-route-id="@Model.Id">
-    <button class="btn btn-danger" asp-controller="Motor" asp-action="Index">Beli</button>
-    <a class="btn btn-primary" asp-controller="Motor" asp-action="Index">Kembali</a>
+    <button class="btn btn-primary" asp-controller="Motor" asp-action="Index">Beli</button>
+    <a class="btn btn-danger" asp-controller="Motor" asp-action="Index">Kembali</a>
 </form>
+
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>Jangan Lupa</strong> Masukkan nomor telepon anda di halaman profil.
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
